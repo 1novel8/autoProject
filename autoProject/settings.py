@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django_countries',
 
     'autoservice.apps.AutoserviceConfig',
-    'customer.apps.CustomerConfig'
+    'customer.apps.CustomerConfig',
+    'diller.apps.DillerConfig',
 ]
 
 MIDDLEWARE = [
