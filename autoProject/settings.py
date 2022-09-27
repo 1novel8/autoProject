@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django_countries',
 
     'autoservice.apps.AutoserviceConfig',
+    'customer.apps.CustomerConfig'
 ]
 
 MIDDLEWARE = [
