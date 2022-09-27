@@ -23,5 +23,3 @@ class CarCatalog(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
     cost = models.IntegerField(default=0)
     count = models.IntegerField(default=0)
-
-
