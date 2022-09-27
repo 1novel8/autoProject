@@ -42,7 +42,7 @@ INSTALLED_APPS = [
 
     'autoservice.apps.AutoserviceConfig',
     'customer.apps.CustomerConfig',
-    'diller.apps.DillerConfig',
+    'dealer.apps.DealerConfig',
 ]
 
 MIDDLEWARE = [
