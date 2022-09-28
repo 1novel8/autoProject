@@ -30,14 +30,14 @@ class Car(BaseModel):
     mileage = models.IntegerField(default=0)
 
 
-class CarCatalog(BaseModel):
+class CarCatalog(models.Model):
     autoservice = models.ForeignKey(Autoservice, on_delete=models.CASCADE)
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
     cost = models.IntegerField(default=0)
     count = models.IntegerField(default=0)
 
 
-class SaleHistory(BaseModel):
+class SaleHistory(models.Model):
     autoservice = models.ForeignKey(Autoservice, on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     car = models.ForeignKey(Car, on_delete=models.SET_NULL)
