@@ -1,5 +1,6 @@
 from django.db import models
 
+from autoservice.enums import Brands, BodyTypes, FuelTypes
 from customer.models import Customer
 
 
@@ -21,11 +22,11 @@ class Autoservice(BaseModel):
 
 
 class Car(BaseModel):
-    brand = models.CharField(max_length=30)
-    body_type = models.CharField(max_length=30)
+    brand = models.CharField(max_length=30, choices=Brands.choices())
+    body_type = models.CharField(max_length=30, choices=BodyTypes.choices())
     issue_year = models.IntegerField(default=0)
     model_of_car = models.CharField(max_length=30)
-    fuel_type = models.CharField(max_length=30)
+    fuel_type = models.CharField(max_length=30, choices=FuelTypes.choices())
     mileage = models.IntegerField(default=0)
 
 
