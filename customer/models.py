@@ -1,6 +1,6 @@
 from django.db import models
 
-from autoservice.models import BaseModel
+from autoProject.models import BaseModel
 
 
 class Customer(BaseModel):

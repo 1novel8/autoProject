@@ -4,3 +4,5 @@ flake8
 mypy
 pylint
 black
+djangorestframework
+psycopg2

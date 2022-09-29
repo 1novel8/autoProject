@@ -2,23 +2,15 @@ from django.db import models
 
 from autoservice.enums import Brands, BodyTypes, FuelTypes
 from customer.models import Customer
-
-
-class BaseModel(models.Model):
-    date_of_creation = models.DateTimeField(auto_now_add=True)
-    date_of_last_modification = models.DateTimeField(auto_now_add=True)
-    is_active = models.BooleanField(default=True)
-
-    class Meta:
-        abstract = True
+from autoProject.models import BaseModel
 
 
 class Autoservice(BaseModel):
     name = models.CharField(max_length=30)
     feature_preference = models.JSONField()
     balance = models.IntegerField(default=0)
-    car_catalog = models.ManyToManyField('Car', through='CarCatalog')
-    sale_history = models.ManyToManyField(Customer, through='SaleHistory')
+    car_catalog = models.ManyToManyField('Car', through='AutoserviceCarCatalog')
+    sale_history = models.ManyToManyField(Customer, through='AutoserviceSaleHistory')
 
 
 class Car(BaseModel):
@@ -30,16 +22,16 @@ class Car(BaseModel):
     mileage = models.IntegerField(default=0)
 
 
-class CarCatalog(models.Model):
+class AutoserviceCarCatalog(models.Model):
     autoservice = models.ForeignKey(Autoservice, on_delete=models.CASCADE)
-    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name='autoservice_car')
     cost = models.IntegerField(default=0)
     count = models.IntegerField(default=0)
 
 
-class SaleHistory(models.Model):
+class AutoserviceSaleHistory(models.Model):
     autoservice = models.ForeignKey(Autoservice, on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    car = models.ForeignKey(Car, on_delete=models.SET_NULL)
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
     cost = models.IntegerField(default=0)
     # date
