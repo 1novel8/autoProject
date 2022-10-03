@@ -6,8 +6,7 @@ urlpatterns = [
     ########
 ]
 router = routers.SimpleRouter()
-router.register(r'', AutoserviceViewSet)
-router.register(r'', CarViewSet)
+router.register(r'autoservice', AutoserviceViewSet)
+router.register(r'car', CarViewSet)
 
 urlpatterns += router.urls
-

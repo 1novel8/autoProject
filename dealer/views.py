@@ -13,3 +13,6 @@ class DealerViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, mixins.Retri
         instance.is_active = False
         instance.save()
 
+    # @action()
+    # def listOf(self, request):
+    #     dew

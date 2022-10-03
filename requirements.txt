@@ -6,3 +6,4 @@ pylint
 black
 djangorestframework
 psycopg2
+factory_boy
