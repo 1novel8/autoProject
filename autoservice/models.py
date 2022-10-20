@@ -1,6 +1,4 @@
-import random
-
-import factory.django
+from datetime import datetime
 from django.db import models
 
 from autoservice.enums import Brands, BodyTypes, FuelTypes
@@ -37,4 +35,4 @@ class AutoserviceSaleHistory(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
     cost = models.IntegerField(default=0)
-    date = models.DateTimeField(auto_created=True)
+    date = models.DateTimeField(default=datetime.now())

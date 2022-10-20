@@ -5,17 +5,27 @@ from django.core.management import BaseCommand
 from autoservice.enums import Brands, BodyTypes, FuelTypes
 from autoservice.models import Car, Autoservice
 from customer.models import Customer
-from dealer.models import Dealer
+from dealer.models import Dealer, DealerCarCatalog
 
 
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
+        dealer_list = list()
+        car_list = list()
+        autoservice_list = list()
+        for i in range(50):
+            car_list.append(self.create_car())
         for i in range(10):
-            dealer = self.create_dealer()
-            for j in range(20):
-                dealer.car_catalog.add(self.create_car())
-            self.create_autoservice()
-            self.create_customer()
+            dealer_list.append(self.create_dealer())
+        for i in range(20):
+            autoservice_list.append(self.create_autoservice())
+        for car in car_list:
+            for dealer in dealer_list:
+                if random.randint(0, 2) == 1:
+                    dealer_catalog = DealerCarCatalog(car=car,
+                                                      dealer=dealer,
+                                                      cost=random.randint(10000, 30000) / random.randint(1, 3))
+                    dealer_catalog.save()
 
     def create_car(self):
         car = Car.objects.create(
@@ -29,11 +39,12 @@ class Command(BaseCommand):
         return car
 
     def create_autoservice(self):
-        Autoservice.objects.create(
+        autoservice = Autoservice.objects.create(
             name=''.join(random.choice(ascii_letters) for i in range(10)),
             feature_preference=self.generate_preference(),
             balance=0
         )
+        return autoservice
 
     def generate_preference(self):
         preference = {

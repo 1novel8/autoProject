@@ -18,10 +18,10 @@ class DealerSaleHistory(BaseModel):
     sold_car = models.ForeignKey(Car, on_delete=models.CASCADE)
     cost = models.IntegerField(default=0)
     count = models.IntegerField(default=0)
+    date = models.DateTimeField(auto_created=True)
 
 
 class DealerCarCatalog(models.Model):
     dealer = models.ForeignKey(Dealer, on_delete=models.CASCADE)
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
     cost = models.IntegerField(default=0)
-    count = models.IntegerField(default=0)
