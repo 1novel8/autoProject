@@ -1,6 +1,4 @@
 from pathlib import Path
-import socket
-from urllib.parse import urlparse
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 

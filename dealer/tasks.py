@@ -11,5 +11,4 @@ def send_spam(data):
               'Dealer:'+json.dumps(data),
               'noooowell@gmail.com',
               ['18.novel.18@gmail.com'],
-              fail_silently=False
-              )
+              fail_silently=False)

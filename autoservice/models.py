@@ -22,6 +22,9 @@ class Car(BaseModel):
     fuel_type = models.CharField(max_length=30, choices=FuelTypes.choices())
     mileage = models.IntegerField(default=0)
 
+    def __str__(self):
+        return f'{self.brand} {self.id}'
+
 
 class AutoserviceCarCatalog(models.Model):
     autoservice = models.ForeignKey(Autoservice, on_delete=models.CASCADE)
