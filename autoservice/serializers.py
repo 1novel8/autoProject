@@ -7,7 +7,7 @@ class AutoserviceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Autoservice
         fields = '__all__'
-        read_only_fields = ('is_active', 'balance',)
+        read_only_fields = ('is_active', )
 
 
 class CarSerializer(serializers.ModelSerializer):

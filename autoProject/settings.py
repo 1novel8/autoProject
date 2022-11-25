@@ -19,10 +19,14 @@ INSTALLED_APPS = [
 
     'django_countries',
     'rest_framework',
+    'djoser',
+    'rest_framework_simplejwt',
 
     'autoservice.apps.AutoserviceConfig',
     'customer.apps.CustomerConfig',
     'dealer.apps.DealerConfig',
+    'authorization.apps.AuthorizationConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -81,6 +85,24 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+}
+
+DJOSER = {
+    'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': False,
+}
+
+SIMPLE_JWT = {
+    'AUTH_HEADER_TYPES': ('JWT',)
+}
+
+AUTH_USER_MODEL = 'authorization.User'
 
 LANGUAGE_CODE = 'en-us'
 

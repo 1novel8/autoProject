@@ -4,6 +4,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from .models import Autoservice, Car, AutoserviceSaleHistory, AutoserviceCarCatalog
+from .permissions import IsAdminOrReadOnly
 from .serializers import AutoserviceSerializer, CarSerializer
 from .services import AutoserviceService
 
@@ -13,6 +14,7 @@ class AutoserviceViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixin
     queryset = Autoservice.objects.filter(is_active=True)
     serializer_class = AutoserviceSerializer
     autoservice_service = AutoserviceService()
+    permission_classes = (IsAdminOrReadOnly, )
 
     def perform_destroy(self, instance: Autoservice):
         instance.is_active = False
